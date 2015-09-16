@@ -1,0 +1,10 @@
+{
+  "name": "swizzley88-devechelon",
+  "version": "1.5.0",
+  "author": "Dustin Morgan",
+  "summary": "blah blah blah",
+  "description": "test",
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">=2.2.1"}
+  ]
+}
