@@ -27,19 +27,12 @@ class devechelon {
     root_password           => 'Mysql$$1234',
     remove_default_accounts => true,
     package_ensure          => '‎5.5.42'
-  }
-
-  mysql_database { "$::hostname/test":
-    name    => 'test',
-    charset => 'utf8',
-  }
-
-  mysql_user { 'test@test': password_hash => mysql_password('password'), }
-
-  mysql_grant { "test@${::hostname}/test.*":
-    table      => "test.*",
-    user       => "test@${::hostname}",
-    privileges => ['ALL'],
+  } ->
+  mysql::db { 'test':
+    user     => 'test',
+    password => 'test',
+    host     => 'localhost',
+    grant    => ['ALL'],
   }
 
   sudoers::allowed_command { "hooray":
