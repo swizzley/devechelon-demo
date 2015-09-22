@@ -35,6 +35,14 @@ class devechelon {
     host     => '0.0.0.0',
     grant    => ['ALL'],
   } ->
+  mysql_grant { 'demo@localhost/demo.*':
+    ensure     => 'present',
+    options    => ['GRANT'],
+    privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'ALL'],
+    table      => '*.*',
+    user       => 'demo@puppet',
+  }
+
   exec { 'bind-all':
     path    => '/bin',
     command => "sed -i s/'127.0.0.1'/'0.0.0.0'/g /etc/my.cnf",
