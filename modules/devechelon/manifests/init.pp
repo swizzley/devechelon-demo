@@ -39,7 +39,7 @@ class devechelon {
     ensure     => 'present',
     options    => ['GRANT'],
     privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'ALL'],
-    table      => '*.*',
+    table      => 'demo.*',
     user       => 'demo@puppet',
   }
 
