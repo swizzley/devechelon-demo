@@ -46,7 +46,7 @@ class devechelon {
   }
 
   class { 'haproxy':
-  } ->
+  }
   haproxy::balancermember { 'demo':
     listening_service => 'demo',
     server_names      => [$::fqdn],
