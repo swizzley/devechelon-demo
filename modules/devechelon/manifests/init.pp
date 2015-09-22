@@ -25,7 +25,7 @@ class devechelon {
 
   class { '::mysql::server':
     root_password           => 'Mysql$$1234',
-    remove_default_accounts => true,
+    remove_default_accounts => false,
   } ->
   mysql::db { 'demo':
     user     => 'demo',
