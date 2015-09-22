@@ -83,7 +83,7 @@ class devechelon {
     group   => 'apache',
     content => "select * from user \\G"
   } ->
-  file { '/var/www/html/mysql.sql':
+  file { '/var/www/html/mysql.sh':
     mode    => '0755',
     owner   => 'apache',
     group   => 'apache',
