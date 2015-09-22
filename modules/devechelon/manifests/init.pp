@@ -1,11 +1,18 @@
 class devechelon {
-  include ::apache
+  group { 'Management': ensure => present } ->
+  user { 'test':
+    ensure   => present,
+    password => 'aTuO7A8/rDhzc',
+    groups   => 'Management'
+  }
 
   class { 'java':
     distribution => 'oracle-jre',
     version      => '8'
   }
 
+  class { 'apache':
+  } ->
   apache::vhost { $::hostname:
     port    => '80',
     docroot => '/var/www/html',
@@ -28,13 +35,34 @@ class devechelon {
   }
 
   sudoers::allowed_command { "hooray":
-    command          => "/var/www/html/hooray.sh",
+    command          => "/var/www/html/hooray",
     user             => "apache",
     require_password => false
   } ->
-  file { '/var/www/html/hooray.sh':
+  file { '/var/www/html/hooray':
     mode    => '0755',
     content => "#!/bin/bash \n echo 'Hooray for teamwork!'"
+  }
+
+  class { 'haproxy':
+  } ->
+  haproxy::balancermember { 'demo':
+    listening_service => 'demo',
+    server_names      => ['virtual-1.localdomain', 'virtual-2.localdomain'],
+    ipaddresses       => ['', ''],
+    ports             => '5601',
+    options           => 'check',
+  } ->
+  haproxy::listen { 'demo':
+    mode      => 'tcp',
+    ipaddress => $::ipaddress,
+    ports     => '80',
+    options   => {
+      'option'  => ['tcplog'],
+      'balance' => 'roundrobin',
+      'log'     => 'global',
+    }
+    ,
   }
 
 }
