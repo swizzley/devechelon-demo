@@ -1,10 +1,13 @@
 {
   "name": "swizzley88-devechelon",
   "version": "1.5.0",
-  "author": "Dustin Morgan",
-  "summary": "blah blah blah",
-  "description": "test",
-  "source": "http://stuff.com",
+  "author": "swizzley88",
+  "summary": "Configures my tests.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/swizzley/devechelon-demo",
+  "project_page": "https://github.com/swizzley/devechelon-demo",
+  "issues_url": "https://github.com/swizzley/devechelon-demo",
+  "description": "Puppet module to configure my test",
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">=2.2.1"}
   ]
