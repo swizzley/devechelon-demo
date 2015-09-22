@@ -34,6 +34,11 @@ class devechelon {
     password => 'demo',
     host     => 'localhost',
     grant    => ['ALL'],
+  } ->
+  mysql_grant { "demo@${::ipaddress}/demo.*":
+    table      => "demo.*",
+    user       => "demo@*",
+    privileges => ['ALL'],
   }
 
   sudoers::allowed_command { "hooray":
