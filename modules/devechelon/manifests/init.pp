@@ -35,7 +35,7 @@ class devechelon {
     host     => '0.0.0.0',
     grant    => ['ALL'],
   } ->
-  mysql_grant { 'demo@puppet/demo.*':
+  mysql_grant { 'demo@puppet.localdomain/demo.*':
     ensure     => 'present',
     options    => ['GRANT'],
     privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'ALL'],
