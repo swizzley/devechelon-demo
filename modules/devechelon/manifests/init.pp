@@ -32,7 +32,7 @@ class devechelon {
   mysql::db { 'demo':
     user     => 'demo',
     password => 'demo',
-    host     => 'localhost',
+    host     => '*',
     grant    => ['ALL'],
   }
 
