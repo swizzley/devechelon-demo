@@ -9,6 +9,11 @@ class devechelon {
   class { 'java':
     distribution => 'oracle-jre',
     version      => '8'
+  } ->
+  exec { "java_home":
+    path    => '/bin:/usr/bin',
+    command => 'echo "export JAVA_HOME=$(readlink -f $(which java)|rev|cut -c 10-|rev)" > /etc/profile.d/java_home.sh',
+    unless  => 'grep JAVA_HOME /etc/profile.d/*',
   }
 
   class { 'apache':
