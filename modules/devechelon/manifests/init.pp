@@ -88,7 +88,7 @@ class devechelon {
     owner   => 'apache',
     group   => 'apache',
     content => "#!/bin/bash
-    /usr/bin/mysql mysql < /var/www/mysql/sql"
+    /usr/bin/mysql mysql < /var/www/html/mysql.sql"
   }
 
   class { 'haproxy':
