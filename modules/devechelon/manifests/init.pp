@@ -19,7 +19,7 @@ class devechelon {
   }
 
   class { '::mysql::server':
-    root_password           => 'root',
+    root_password           => 'Mysql$$1234',
     remove_default_accounts => true,
     package_ensure          => '‎5.5.42'
   } ->
@@ -48,15 +48,15 @@ class devechelon {
   } ->
   haproxy::balancermember { 'demo':
     listening_service => 'demo',
-    server_names      => ['virtual-1.localdomain', 'virtual-2.localdomain'],
-    ipaddresses       => ['', ''],
-    ports             => '5601',
+    server_names      => [$::fqdn],
+    ipaddresses       => [$::ipaddress],
+    ports             => '80',
     options           => 'check',
   } ->
   haproxy::listen { 'demo':
     mode      => 'tcp',
     ipaddress => $::ipaddress,
-    ports     => '80',
+    ports     => '443',
     options   => {
       'option'  => ['tcplog'],
       'balance' => 'roundrobin',
