@@ -55,7 +55,7 @@ class devechelon {
     owner   => 'apache',
     group   => 'apache',
     content => "#!/bin/bash
-    echo \"my name is $(hostname) and Hooray for teamwork!"
+    echo \"my name is $(hostname) and Hooray for teamwork!\""
   }
 
   class { 'haproxy':
