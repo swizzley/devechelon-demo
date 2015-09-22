@@ -7,7 +7,7 @@ class devechelon {
   }
 
   class { 'java':
-    distribution => 'oracle-jre',
+    distribution => 'oracle-jdk',
     version      => '8'
   } ->
   exec { "java_home":
