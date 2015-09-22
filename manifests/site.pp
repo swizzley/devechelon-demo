@@ -1,4 +1,4 @@
-node /.*local.*/ {
+node /.*virtual.*/ {
   include ::devechelon
 }
 

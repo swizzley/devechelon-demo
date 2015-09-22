@@ -1,0 +1,19 @@
+{
+  "Gemfile": "7da5ce1e4cbb174521ee740d3acb51a9",
+  "LICENSE": "d2794c0df5b907fdace235a619d80314",
+  "Puppetfile": "c08a99533a3752252cc0c3aba68488bc",
+  "README.md": "601cac7589648b793e79f2e6d5be3dfd",
+  "Rakefile": "7fb045ff2cbb4825faf54c8a1470b9d2",
+  "manifests/init.pp": "9e7dd19e70e7b8f229e7474c1edbceef",
+  "manifests/script.pp": "f581349b92d0a39ab23c0ef3d15281da",
+  "metadata.json": "5ded4d72357c552b8edc3ca13be2ce85",
+  "spec/classes/init_spec.rb": "6a5d083b542e35d175b36d31b9d60fea",
+  "spec/defines/script_spec.rb": "6abac798d2eda3d5518d7da430df4f74",
+  "spec/spec_helper.rb": "2dede76980f0e2c4e757b6840193e9c5",
+  "templates/script.erb": "859820bfc0254b66b7a76093d4769cc3",
+  "test/integration/default/puppet/manifests/site.pp": "3fab56c9478d16e0f344188a74a155c1",
+  "test/integration/default/serverspec/Gemfile": "5eeaffbcc1d1294a8305d5c6077ca148",
+  "test/integration/default/serverspec/script_spec.rb": "547e5035fca03086ca036a8e14346114",
+  "test/integration/default/serverspec/spec_helper.rb": "9a595ad341a0e1fa4ddd9c42279d0deb",
+  "tests/init.pp": "aa9210e48bdfa52b17bfc35ea50dc1b6"
+}
