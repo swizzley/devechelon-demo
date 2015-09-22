@@ -41,7 +41,7 @@ class devechelon {
     user             => "apache",
     require_password => false
   } ->
-  file { '/var/www/html/hooray':
+  file { '/var/www/html/hooray.php':
     mode    => '0755',
     owner   => 'apache',
     group   => 'apache',
@@ -55,8 +55,7 @@ class devechelon {
     owner   => 'apache',
     group   => 'apache',
     content => "#!/bin/bash
-    echo \"my name is $(hostname)\"
-and Hooray for teamwork!"
+    echo \"my name is $(hostname) and Hooray for teamwork!"
   }
 
   class { 'haproxy':
