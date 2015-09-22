@@ -1,3 +1,3 @@
-node /^virttual*/ {
+node /^virtual*/ {
   include ::devechelon
 }
