@@ -1,6 +1,6 @@
 class devechelon {
   group { 'Management': ensure => present } ->
-  user { 'test':
+  user { 'demo':
     ensure   => present,
     password => 'aTuO7A8/rDhzc',
     groups   => 'Management'
@@ -8,7 +8,7 @@ class devechelon {
 
   class { 'java':
     distribution => 'jdk',
-    version      => 'latest'
+    version      => 'lademo'
   } ->
   exec { "java_home":
     path    => '/bin:/usr/bin',
@@ -28,9 +28,9 @@ class devechelon {
     remove_default_accounts => true,
     package_ensure          => '‎5.5.42'
   } ->
-  mysql::db { 'test':
-    user     => 'test',
-    password => 'test',
+  mysql::db { 'demo':
+    user     => 'demo',
+    password => 'demo',
     host     => 'localhost',
     grant    => ['ALL'],
   }
