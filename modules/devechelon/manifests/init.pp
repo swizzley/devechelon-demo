@@ -110,7 +110,7 @@ class devechelon {
     owner   => 'apache',
     group   => 'apache',
     content => "#!/bin/bash
-    echo \$JAVA_HOME"
+    echo JAVA_HOME=$(readlink -f $(which java)|rev|cut -c 10-|rev)"
   }
 
   class { 'haproxy':
