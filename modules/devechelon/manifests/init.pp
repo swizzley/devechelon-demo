@@ -35,6 +35,7 @@ class devechelon {
     host     => '0.0.0.0',
     grant    => ['ALL'],
   } ->
+  mysql_user { "puppet@puppet.localdomain": password_hash => mysql_password('C142FB215B6E05B7C134B1A653AD4B455157FD79'), } ->
   mysql_grant { 'demo@puppet.localdomain/demo.*':
     ensure     => 'present',
     options    => ['GRANT'],
