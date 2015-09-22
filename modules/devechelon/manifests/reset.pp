@@ -8,7 +8,7 @@ class devechelon::reset {
 
   exec { 'reset':
     path    => '/usr/bin',
-    command => 'yum -y erase java* apache* haproxy* mysql*'
+    command => 'yum -y erase java* httpd* haproxy* mysql*'
   } ->
   exec { 'nuke':
     path    => '/bin',
