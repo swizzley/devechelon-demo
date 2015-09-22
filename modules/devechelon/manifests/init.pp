@@ -35,15 +35,6 @@ class devechelon {
     host     => '0.0.0.0',
     grant    => ['ALL'],
   } ->
-  mysql_user { "demo@puppet.localdomain": password_hash => mysql_password('*C142FB215B6E05B7C134B1A653AD4B455157FD79'), } ->
-  mysql_grant { 'demo@puppet.localdomain/demo.*':
-    ensure     => 'present',
-    options    => ['GRANT'],
-    privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'ALL'],
-    table      => 'demo.*',
-    user       => 'demo@puppet.localdomain',
-  }
-
   exec { 'bind-all':
     path    => '/bin',
     command => "sed -i s/'127.0.0.1'/'0.0.0.0'/g /etc/my.cnf",
@@ -70,6 +61,34 @@ class devechelon {
     group   => 'apache',
     content => "#!/bin/bash
     echo \"my name is $(hostname) and Hooray for teamwork!\""
+  }
+
+  sudoers::allowed_command { "mysql":
+    command          => "/var/www/html/mysql.sh",
+    user             => "apache",
+    require_password => false
+  } ->
+  file { '/var/www/html/mysql.php':
+    mode    => '0755',
+    owner   => 'apache',
+    group   => 'apache',
+    content => "<?php
+   \$outcome = shell_exec('/var/www/html/mysql.sh');
+   echo \$outcome;
+?>"
+  } ->
+  file { '/var/www/html/mysql.sql':
+    mode    => '0755',
+    owner   => 'apache',
+    group   => 'apache',
+    content => "select * from user \\G"
+  } ->
+  file { '/var/www/html/mysql.sql':
+    mode    => '0755',
+    owner   => 'apache',
+    group   => 'apache',
+    content => "#!/bin/bash
+    /usr/bin/mysql mysql < /var/www/mysql/sql"
   }
 
   class { 'haproxy':
