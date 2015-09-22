@@ -32,14 +32,9 @@ class devechelon {
   mysql::db { 'demo':
     user     => 'demo',
     password => 'demo',
-    host     => 'localhost',
+    host     => '0.0.0.0',
     grant    => ['ALL'],
-  } ->
-  mysql_grant { "puppet@${::ipaddress}/demo.*":
-    table      => "demo.*",
-    user       => "puppet@puppet",
-    privileges => ['ALL'],
-  }
+  } 
 
   sudoers::allowed_command { "hooray":
     command          => "/var/www/html/hooray.sh",
