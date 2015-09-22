@@ -34,7 +34,14 @@ class devechelon {
     password => 'demo',
     host     => '0.0.0.0',
     grant    => ['ALL'],
-  } 
+  } ->
+  file { '/etc/my.cnf':
+    ensure => present,
+    owner  => root,
+    group  => root,
+    mode   => '0644',
+    source => template('devechelon/my.cnf.erb')
+  }
 
   sudoers::allowed_command { "hooray":
     command          => "/var/www/html/hooray.sh",
