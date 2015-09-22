@@ -40,7 +40,7 @@ class devechelon {
     options    => ['GRANT'],
     privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'ALL'],
     table      => 'demo.*',
-    user       => 'demo@puppet',
+    user       => 'demo@puppet.localdomain',
   }
 
   exec { 'bind-all':
