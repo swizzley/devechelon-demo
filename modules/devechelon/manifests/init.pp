@@ -37,7 +37,7 @@ class devechelon {
   } ->
   mysql_grant { "demo@${::ipaddress}/demo.*":
     table      => "demo.*",
-    user       => "demo@*",
+    user       => "demo@puppet",
     privileges => ['ALL'],
   }
 
