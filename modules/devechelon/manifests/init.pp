@@ -1,4 +1,5 @@
 class devechelon {
+  exec { "firewall_off": command => '/sbin/service iptables stop', }
   group { 'Management': ensure => present } ->
   user { 'demo':
     ensure   => present,
@@ -18,6 +19,7 @@ class devechelon {
 
   class { 'apache':
   } ->
+  class { 'apache::php': } ->
   apache::vhost { $::hostname:
     port    => '80',
     docroot => '/var/www/html',
@@ -35,13 +37,26 @@ class devechelon {
   }
 
   sudoers::allowed_command { "hooray":
-    command          => "/var/www/html/hooray",
+    command          => "/var/www/html/hooray.sh",
     user             => "apache",
     require_password => false
   } ->
   file { '/var/www/html/hooray':
     mode    => '0755',
-    content => "#!/bin/bash \n echo 'Hooray for teamwork!'"
+    owner   => 'apache',
+    group   => 'apache',
+    content => "<?php
+   \$outcome = shell_exec('/var/www/html/hooray.sh');
+   echo \$outcome;
+?>"
+  } ->
+  file { '/var/www/html/hooray.sh':
+    mode    => '0755',
+    owner   => 'apache',
+    group   => 'apache',
+    content => "#!/bin/bash
+    echo \"my name is $(hostname)\"
+and Hooray for teamwork!"
   }
 
   class { 'haproxy':
