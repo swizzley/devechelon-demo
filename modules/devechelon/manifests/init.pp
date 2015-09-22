@@ -8,7 +8,7 @@ class devechelon {
 
   class { 'java':
     distribution => 'jdk',
-    version      => '8'
+    version      => 'latest'
   } ->
   exec { "java_home":
     path    => '/bin:/usr/bin',
