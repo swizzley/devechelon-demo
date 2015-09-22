@@ -35,12 +35,10 @@ class devechelon {
     host     => '0.0.0.0',
     grant    => ['ALL'],
   } ->
-  file { '/etc/my.cnf':
-    ensure => present,
-    owner  => root,
-    group  => root,
-    mode   => '0644',
-    source => template('devechelon/my.cnf.erb')
+  exec { 'bind-all':
+    path    => '/bin',
+    command => "sed -i s/'127.0.0.1'/'0.0.0.0'/g /etc/my.cnf",
+    unless  => 'grep 0.0.0.0 /etc/my.cnf'
   }
 
   sudoers::allowed_command { "hooray":
@@ -87,3 +85,4 @@ class devechelon {
   }
 
 }
+
