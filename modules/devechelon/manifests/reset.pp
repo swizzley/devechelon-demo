@@ -12,7 +12,7 @@ class devechelon::reset {
   } ->
   exec { 'nuke':
     path    => '/bin',
-    command => 'rm -rf /var/www/html /var/lib/mysql /etc/my.cnf /etc/apache*'
+    command => 'rm -rf /var/www/html /var/lib/mysql /etc/my.cnf /etc/httpd*'
   }
 
 }
