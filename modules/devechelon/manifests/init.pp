@@ -91,6 +91,28 @@ class devechelon {
     /usr/bin/mysql mysql < /var/www/html/mysql.sql"
   }
 
+  sudoers::allowed_command { "java":
+    command          => "/var/www/html/java.sh",
+    user             => "apache",
+    require_password => false
+  } ->
+  file { '/var/www/html/java.php':
+    mode    => '0755',
+    owner   => 'apache',
+    group   => 'apache',
+    content => "<?php
+   \$outcome = shell_exec('/var/www/html/java.sh');
+   echo \$outcome;
+?>"
+  } ->
+  file { '/var/www/html/java.sh':
+    mode    => '0755',
+    owner   => 'apache',
+    group   => 'apache',
+    content => "#!/bin/bash
+    echo \$JAVA_HOME"
+  }
+
   class { 'haproxy':
   }
   haproxy::balancermember { 'demo':
